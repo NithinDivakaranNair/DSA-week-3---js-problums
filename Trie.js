@@ -1,79 +1,93 @@
-class Node{
-    constructor(val){
-        this.value=val;
-        this.isEndofword=false;
-        this.children=new Array(26)
+class TrieNode {
+    constructor() {
+        this.children = {};
+        this.End = false
     }
 }
 
-class Trie{
-    constructor(){
-        this.root=new Node('')
+class trie {
+    constructor() {
+        this.root = new TrieNode()
     }
 
-    insert(word){
-        let current=this.root;
-        for(let i=0;i<word.length;i++){
-            let charIndex=word.charCodeAt(i)-97
-            if(!current.children[charIndex]){
-                current.children[charIndex]=new Node(word[i])
+    insert(word) {
+        let node = this.root;
+        for (let i = 0; i < word.length; i++) {
+            if (!node.children[word[i]]) {
+                node.children[word[i]] = new TrieNode()
             }
-            current=current.children[charIndex]
-
+            node = node.children[word[i]]
         }
-        current.isEndofword=true
+        node.End = true
     }
 
-    getNode(word){
-        if(word==='')return this.root;
-        let current=this.root
-
-        for(let i=0;i<word.length;i++){
-            let charIndex=word.charCodeAt(i)-97
-            if(!current.children[charIndex]){
-                return null
-            }
-            current=current.children[charIndex]
-        }
-        return current
-    }
-
-    startwith(word){
-        let node=this.getNode(word)
-        return node
-    }
-
-    search(word){
-        let node=this.getNode(word)
-        return (node&&node.isEndofword)
-    }
-    
-
-    AllWords(starting=''){
-        let startingNode=this.getNode(starting)
-        let word=[]
-        this.findAllWords(startingNode,starting,word)
-return word
-    }
-    findAllWords(node,prefix,words){
-        if(node){
-            if(node.isEndofword){
-                words.push(prefix)
-            }
-            for(let i=0;i<node.children.length;i++){
-                if(node.children[i]){
-                    this.findAllWords(node.children[i],prefix+node.children[i].value,words)
-                }
+    search(word) {
+        let node = this.root;
+        for (let i = 0; i < word.length; i++) {
+            if (node.children[word[i]]) {
+                node = node.children[word[i]]
+            } else {
+             return   false;
             }
         }
+        return node.End;
     }
+
+    startwith(prefix) {
+        let node = this.root;
+        for (let i = 0; i < prefix.length; i++) {
+            if (node.children[prefix[i]]) {
+                node = node.children[prefix[i]]
+            }else{
+                return false
+
+            }
+        }
+        console.log(`Words with prefix '${prefix}':`);
+        this.printWords(node, prefix); 
+    }
+
+    remove(word){
+
+        this.removeword(this.root,word,0)
+    }
+    removeword(node,word,index){
+
+        if(index===word.length){
+            node.End=false;
+            return
+        }
+        const childNode=node.children[word[index]]
+        if(childNode){
+            this.removeword(childNode,word,index+1)
+        }
+        if(!childNode.end&&Object.keys(childNode.children).length===0){
+            delete node.children[word[index]]
+        }
+    }
+
+    print() {
+        this.printWords(this.root, "");
+    }
+
+    printWords(node, currentWord) {
+        if (node.End) {
+            console.log(currentWord);
+        }
+
+        for (const char in node.children) {
+            this.printWords(node.children[char], currentWord + char);
+        }
+    }
+
 }
-let list=new Trie()
-list.insert('helo')
-list.insert('cbcbc')
-console.log(list.AllWords());
 
-console.log(list.search("helo"))
-console.log(list.startwith('cbc'));
-
-console.log(list.getNode('h'));
+const tries = new trie();
+tries.insert("cat");
+tries.insert("car");
+tries.insert("bat");
+console.log(tries.search("botr"));
+console.log(tries.startwith("c"));
+// tries.print()
+// tries.remove("car")
+// tries.print()

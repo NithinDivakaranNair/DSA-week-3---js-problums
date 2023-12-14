@@ -55,6 +55,7 @@ class bst {
         return false
     }
 
+    //level order
     BFS() {
         let result = []
         let queue = []
@@ -139,21 +140,56 @@ class bst {
     }
 
 
+
+    Delete(value) {
+        this.root = this.deleteNode(this.root, value)
+    }
+    deleteNode(root, value) {
+        if (root === null) {
+            return root
+        }
+        if (value < root.val) {
+            root.left = this.deleteNode(root.left, value)
+        } else if (value > root.val) {
+            root.right = this.deleteNode(root.right, value)
+        } else {
+            if (!root.left && !root.right) {
+                return null
+            }
+            if (!root.left) {
+                return root.right
+            }
+            else if (!root.right) {
+                return root.left
+            }
+
+            root.val = this.min(root.right)
+            root.right = this.deleteNode(root.right, root.val)
+        }
+
+        return root
+
+
+    }
+
+
 }
 
 let tree = new bst()
 
 tree.insert(10)
-tree.insert(6)
-
+tree.insert(9)
+tree.insert(16)
 tree.insert(15)
 tree.insert(3)
-tree.insert(8)
 tree.insert(20)
-// console.log(tree.contain(6));
-console.log(tree.BFS())
-console.log(tree.Preorder())
-console.log(tree.inorder())
 console.log(tree.postorder());
-console.log(tree.maxm(tree.root));
+tree.Delete(16)
+console.log(tree.postorder());
+// console.log(tree.contain(6));
+// console.log(tree.BFS())
+// console.log(tree.Preorder())
+// console.log(tree.inorder())
+// console.log(tree.postorder());
+// console.log(tree.maxm(tree.root));
 // tree.BFS()
