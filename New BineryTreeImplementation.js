@@ -12,7 +12,7 @@ class bst {
     }
 
 
-
+//Insert Node
     insert(val) {
         var newnode = new Node(val)
         if (!this.root) {
@@ -22,8 +22,7 @@ class bst {
         }
     }
 
-
-    insertval(root, newnode) {
+ insertval(root, newnode) {
         if (root.val > newnode.val) {
             if (root.left === null) {
                 root.left = newnode
@@ -39,7 +38,7 @@ class bst {
         }
     }
 
-
+//Search Node
     contain(val) {
         if (this.root === null) return false
         let current = this.root;
@@ -55,6 +54,60 @@ class bst {
         }
         return false
     }
+
+
+//Delete Node    
+    Delete(value) {
+        this.root = this.deleteNode(this.root, value)
+    }
+    deleteNode(root, value) {
+        if (root === null) {
+            return root
+        }
+        if (value < root.val) {
+            root.left = this.deleteNode(root.left, value)
+        } else if (value > root.val) {
+            root.right = this.deleteNode(root.right, value)
+        } else {
+            if (!root.left && !root.right) {
+                return null
+            }
+            if (!root.left) {
+                return root.right
+            }
+             if (!root.right) {
+                return root.left
+            }
+
+            root.val = this.min(root.right)
+            root.right = this.deleteNode(root.right, root.val)
+        }
+
+        return root
+
+
+    }
+
+
+//minimum value
+min(root) {
+    if (!root.left) {
+        return root.val
+    } else {
+        return this.min(root.left)
+    }
+}
+
+//maximun value
+maxm(root) {
+    if (!root.right) {
+        return root.val
+    } else {
+        return this.maxm(root.right)
+    }
+}
+
+
 
 
     //level order
@@ -125,55 +178,8 @@ class bst {
     }
 
 
-    min(root) {
-        if (!root.left) {
-            return root.val
-        } else {
-            return this.min(root.left)
-        }
-    }
+   
 
-    
-    maxm(root) {
-        if (!root.right) {
-            return root.val
-        } else {
-            return this.maxm(root.right)
-        }
-    }
-
-
-
-    Delete(value) {
-        this.root = this.deleteNode(this.root, value)
-    }
-    deleteNode(root, value) {
-        if (root === null) {
-            return root
-        }
-        if (value < root.val) {
-            root.left = this.deleteNode(root.left, value)
-        } else if (value > root.val) {
-            root.right = this.deleteNode(root.right, value)
-        } else {
-            if (!root.left && !root.right) {
-                return null
-            }
-            if (!root.left) {
-                return root.right
-            }
-            else if (!root.right) {
-                return root.left
-            }
-
-            root.val = this.min(root.right)
-            root.right = this.deleteNode(root.right, root.val)
-        }
-
-        return root
-
-
-    }
 
 
 }
