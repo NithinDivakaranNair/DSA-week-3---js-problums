@@ -30,70 +30,70 @@ class Graph {
         delete this.adjacencyList[v1]
     }
 
-//this will left to rigth directionaly moveing
+    //this will left to rigth directionaly moveing
     DFSrecursionfunction(start) {
         const result = [];
         const visited = {};
         const adjacencyList = this.adjacencyList;
-            (function DFS(vertex) {
-                if (!vertex) return null;
-                visited[vertex] = true;
-                result.push(vertex);
-                adjacencyList[vertex].forEach(neighbor => {
-                    if (!visited[neighbor]) {
-                        return DFS(neighbor)
-                    }
-                })
+        (function DFS(vertex) {
+            if (!vertex) return null;
+            visited[vertex] = true;
+            result.push(vertex);
+            adjacencyList[vertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    return DFS(neighbor)
+                }
+            })
 
-            })(start);
+        })(start);
 
         return result
     }
 
 
-//this will rigth to left directionaly moveing
-DepthFirstIterative(start){
-    const stack=[start];
-    const result=[];
-    const visited={}
-    let currentvertex;
-    visited[start]=true
+    //this will rigth to left directionaly moveing
+    DepthFirstIterative(start) {
+        const stack = [start];
+        const result = [];
+        const visited = {}
+        let currentvertex;
+        visited[start] = true
 
-    while(stack.length){
-        currentvertex=stack.pop();
-        result.push(currentvertex);
-        this.adjacencyList[currentvertex].forEach(neighbor=>{
-            if(!visited[neighbor]){
-                visited[neighbor]=true;
-                stack.push(neighbor)
-            }
-        })
+        while (stack.length) {
+            currentvertex = stack.pop();
+            result.push(currentvertex);
+            this.adjacencyList[currentvertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor)
+                }
+            })
+        }
+        return result
     }
-    return result
-}
 
-BreadthFirst(start){
-    const queue=[start]
-    const result=[];
-    const visited={};
-    let currentvertex;
-    visited[start]=true;
-    while(queue.length){
-        currentvertex=queue.shift();
-        result.push(currentvertex)
-        this.adjacencyList[currentvertex].forEach(neighbor=>{
-            if(!visited[neighbor]){
-                visited[neighbor]=true;
-                queue.push(neighbor)
-            }
-        })
+    BreadthFirst(start) {
+        const queue = [start]
+        const result = [];
+        const visited = {};
+        let currentvertex;
+        visited[start] = true;
+        while (queue.length) {
+            currentvertex = queue.shift();
+            result.push(currentvertex)
+            this.adjacencyList[currentvertex].forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor)
+                }
+            })
+        }
+        return result
     }
-    return result
-}
 
 
-   
-    
+
+
 
 
     printGraph() {

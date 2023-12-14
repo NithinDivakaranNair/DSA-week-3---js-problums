@@ -27,7 +27,7 @@ class trie {
             if (node.children[word[i]]) {
                 node = node.children[word[i]]
             } else {
-             return   false;
+                return false;
             }
         }
         return node.End;
@@ -38,30 +38,30 @@ class trie {
         for (let i = 0; i < prefix.length; i++) {
             if (node.children[prefix[i]]) {
                 node = node.children[prefix[i]]
-            }else{
+            } else {
                 return false
 
             }
         }
         console.log(`Words with prefix '${prefix}':`);
-        this.printWords(node, prefix); 
+        this.printWords(node, prefix);
     }
 
-    remove(word){
+    remove(word) {
 
-        this.removeword(this.root,word,0)
+        this.removeword(this.root, word, 0)
     }
-    removeword(node,word,index){
+    removeword(node, word, index) {
 
-        if(index===word.length){
-            node.End=false;
+        if (index === word.length) {
+            node.End = false;
             return
         }
-        const childNode=node.children[word[index]]
-        if(childNode){
-            this.removeword(childNode,word,index+1)
+        const childNode = node.children[word[index]]
+        if (childNode) {
+            this.removeword(childNode, word, index + 1)
         }
-        if(!childNode.end&&Object.keys(childNode.children).length===0){
+        if (!childNode.end && Object.keys(childNode.children).length === 0) {
             delete node.children[word[index]]
         }
     }

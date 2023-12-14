@@ -22,6 +22,7 @@ class bst {
         }
     }
 
+
     insertval(root, newnode) {
         if (root.val > newnode.val) {
             if (root.left === null) {
@@ -55,6 +56,7 @@ class bst {
         return false
     }
 
+
     //level order
     BFS() {
         let result = []
@@ -75,6 +77,7 @@ class bst {
 
     }
 
+
     Preorder() {
         var result = [];
         function travesel(root) {
@@ -83,12 +86,11 @@ class bst {
 
             if (root.right) travesel(root.right)
 
-
-
         }
         travesel(this.root)
         return result
     }
+
 
     inorder() {
         var result = [];
@@ -104,6 +106,7 @@ class bst {
         travesel(this.root)
         return result
     }
+
 
     postorder() {
         var result = [];
@@ -121,16 +124,16 @@ class bst {
         return result
     }
 
+
     min(root) {
         if (!root.left) {
             return root.val
         } else {
             return this.min(root.left)
         }
-
-
     }
 
+    
     maxm(root) {
         if (!root.right) {
             return root.val

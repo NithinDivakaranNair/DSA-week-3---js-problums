@@ -36,17 +36,17 @@ class Heap {
         while (true) {
             let leftchildidx = 2 * idx + 1
             let rightchildidx = 2 * idx + 2
-            let leftchild,rigthchild
+            let leftchild, rigthchild
             let swap = null;
             if (leftchildidx < length) {
-               leftchild = this.values[leftchildidx];
+                leftchild = this.values[leftchildidx];
                 if (leftchild > element) {
                     swap = leftchildidx
                 }
             }
             if (rightchildidx < length) {
-                 rigthchild = this.values[rightchildidx]
-                if ((swap===null && rigthchild > element) || (swap!==null && rigthchild > leftchild)){
+                rigthchild = this.values[rightchildidx]
+                if ((swap === null && rigthchild > element) || (swap !== null && rigthchild > leftchild)) {
                     swap = rightchildidx
                 }
             }
@@ -57,7 +57,7 @@ class Heap {
             idx = swap
         }
     }
-}  
+}
 
 
 
