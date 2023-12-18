@@ -14,7 +14,7 @@ class Heap {
             let parentval = this.values[parentid]
             if (element <= parentval) break
             this.values[parentid] = element
-            this.values[currentid] = parentval
+            this.values[currentid] = parentval 
             currentid = parentid
         }
     }
@@ -68,3 +68,4 @@ let list = new Heap()
 list.ExtractMax()
 console.log(list.ExtractMax());
 
+console.log(list.values);

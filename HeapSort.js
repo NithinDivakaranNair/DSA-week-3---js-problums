@@ -46,13 +46,13 @@ class MinHeap {
                     swap = leftchildidx
                 }
             }
-            if (rightchildidx > length) {
-                leftchildval = this.values[rightchildidx]
-                if ((swap !== null && rightchildval < element) || (swap === null && leftchildval > rightchildval)) {
+            if (rightchildidx < length) {
+                rightchildval = this.values[rightchildidx]
+                if ((!swap && rightchildval < element) || (swap && leftchildval > rightchildval)) {
                     swap = rightchildidx
                 }
             }
-            if (swap === null) break
+            if (!swap) break
             this.values[idx] = this.values[swap]
             this.values[swap] = element
             idx = swap

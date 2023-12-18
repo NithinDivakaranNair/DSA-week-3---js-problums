@@ -16,7 +16,7 @@ class Graph {
 
 
 
-    RemoveEdge(v1, v2) {
+    RemoveEdge(v1, v2) {   
         this.adjacencyList[v1] = this.adjacencyList[v1].filter(item => item !== v2)
         this.adjacencyList[v2] = this.adjacencyList[v2].filter(item => item !== v1)
     }
@@ -114,10 +114,10 @@ myGraph.addEdge('A', 'B');
 myGraph.addEdge('A', 'C');
 myGraph.addEdge('D', 'A');
 myGraph.addEdge('D', 'B');
-myGraph.printGraph();
-myGraph.RemoveVertex('D');
+// myGraph.printGraph();
+// myGraph.RemoveVertex('D');
 myGraph.printGraph();
 
 // console.log(myGraph.DFSrecursionfunction("A"));
-// console.log(myGraph.DepthFirstIterative('A'));
-console.log(myGraph.BreadthFirst('A'));
+console.log(myGraph.DepthFirstIterative('A'));   
+console.log(myGraph.BreadthFirst('A'));   

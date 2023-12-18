@@ -1,68 +1,67 @@
 class TrieNode {
     constructor() {
         this.children = {};
-        this.End = false
+        this.end = false; // Use camelCase for variable names
     }
 }
 
-class trie {
+class Trie {
     constructor() {
-        this.root = new TrieNode()
+        this.root = new TrieNode();
     }
 
     insert(word) {
         let node = this.root;
         for (let i = 0; i < word.length; i++) {
             if (!node.children[word[i]]) {
-                node.children[word[i]] = new TrieNode()
+                node.children[word[i]] = new TrieNode();
             }
-            node = node.children[word[i]]
+            node = node.children[word[i]];
         }
-        node.End = true
+        node.end = true; // Use camelCase for variable names
     }
 
     search(word) {
         let node = this.root;
         for (let i = 0; i < word.length; i++) {
             if (node.children[word[i]]) {
-                node = node.children[word[i]]
+                node = node.children[word[i]];
             } else {
                 return false;
             }
         }
-        return node.End;
+        return node.end; // Use camelCase for variable names
     }
 
-    startwith(prefix) {
+    startsWith(prefix) {
         let node = this.root;
         for (let i = 0; i < prefix.length; i++) {
             if (node.children[prefix[i]]) {
-                node = node.children[prefix[i]]
+                node = node.children[prefix[i]];
             } else {
-                return false
-
+                return false;
             }
         }
         console.log(`Words with prefix '${prefix}':`);
         this.printWords(node, prefix);
+        return true; // Added return statement
     }
 
     remove(word) {
-
-        this.removeword(this.root, word, 0)
+        this.removeWord(this.root, word, 0); // Fix function name
     }
-    removeword(node, word, index) {
 
+    removeWord(node, word, index) {
         if (index === word.length) {
-            node.End = false;
-            return
+            node.end = false; // Use camelCase for variable names
+            return;
         }
-        const childNode = node.children[word[index]]
+        const childNode = node.children[word[index]];
         if (childNode) {
-            this.removeword(childNode, word, index + 1)
+            this.removeWord(childNode, word, index + 1);
         }
         if (!childNode.end && Object.keys(childNode.children).length === 0) {
-            delete node.children[word[index]]
+            delete node.children[word[index]];
         }
     }
 
@@ -71,7 +70,7 @@ class trie {
     }
 
     printWords(node, currentWord) {
-        if (node.End) {
+        if (node.end) {
             console.log(currentWord);
         }
 
@@ -79,15 +78,15 @@ class trie {
             this.printWords(node.children[char], currentWord + char);
         }
     }
-
 }
 
-const tries = new trie();
+const tries = new Trie();
 tries.insert("cat");
 tries.insert("car");
 tries.insert("bat");
+tries.remove('cat')
+
+
 console.log(tries.search("botr"));
-console.log(tries.startwith("c"));
-// tries.print()
-// tries.remove("car")
-// tries.print()
+console.log(tries.startsWith("c"));
+

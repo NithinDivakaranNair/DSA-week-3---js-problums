@@ -12,7 +12,7 @@ class bst {
     }
 
 
-//Insert Node
+    //Insert Node
     insert(val) {
         var newnode = new Node(val)
         if (!this.root) {
@@ -22,7 +22,7 @@ class bst {
         }
     }
 
- insertval(root, newnode) {
+    insertval(root, newnode) {
         if (root.val > newnode.val) {
             if (root.left === null) {
                 root.left = newnode
@@ -38,7 +38,7 @@ class bst {
         }
     }
 
-//Search Node
+    //Search Node
     contain(val) {
         if (this.root === null) return false
         let current = this.root;
@@ -56,7 +56,7 @@ class bst {
     }
 
 
-//Delete Node    
+    //Delete Node    
     Delete(value) {
         this.root = this.deleteNode(this.root, value)
     }
@@ -75,7 +75,7 @@ class bst {
             if (!root.left) {
                 return root.right
             }
-             if (!root.right) {
+            if (!root.right) {
                 return root.left
             }
 
@@ -89,23 +89,23 @@ class bst {
     }
 
 
-//minimum value
-min(root) {
-    if (!root.left) {
-        return root.val
-    } else {
-        return this.min(root.left)
+    //minimum value
+    min(root) {
+        if (!root.left) {
+            return root.val
+        } else {
+            return this.min(root.left)
+        }
     }
-}
 
-//maximun value
-maxm(root) {
-    if (!root.right) {
-        return root.val
-    } else {
-        return this.maxm(root.right)
+    //maximun value
+    maxm(root) {
+        if (!root.right) {
+            return root.val
+        } else {
+            return this.maxm(root.right)
+        }
     }
-}
 
 
 
@@ -178,7 +178,7 @@ maxm(root) {
     }
 
 
-   
+
 
 
 
@@ -187,16 +187,16 @@ maxm(root) {
 let tree = new bst()
 
 tree.insert(10)
-tree.insert(9)
-tree.insert(16)
+tree.insert(6)
 tree.insert(15)
 tree.insert(3)
+tree.insert(8)
 tree.insert(20)
-console.log(tree.postorder());
-tree.Delete(16)
-console.log(tree.postorder());
+// console.log(tree.postorder());
+// tree.Delete(10)
+// console.log(tree.postorder());
 // console.log(tree.contain(6));
-// console.log(tree.BFS())
+console.log(tree.BFS())
 // console.log(tree.Preorder())
 // console.log(tree.inorder())
 // console.log(tree.postorder());
