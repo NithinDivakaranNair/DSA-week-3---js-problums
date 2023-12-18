@@ -158,8 +158,32 @@ class bst {
         }
         travesel(this.root)
         return result
+       
     }
 
+
+    checkBST() {
+        var result = [];
+        function travesel(root) {// inorder funtion
+            if (root.left) {
+                travesel(root.left)
+            }
+            result.push(root.val)
+            if (root.right) {
+                travesel(root.right)
+            }
+        }
+        travesel(this.root)
+        
+        // Check if the result array is sorted
+        for (let i = 1; i < result.length; i++) {
+            if (result[i] <= result[i - 1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     postorder() {
         var result = [];
@@ -195,10 +219,11 @@ tree.insert(20)
 // console.log(tree.postorder());
 // tree.Delete(10)
 // console.log(tree.postorder());
-// console.log(tree.contain(6));
-console.log(tree.BFS())
-// console.log(tree.Preorder())
-// console.log(tree.inorder())
-// console.log(tree.postorder());
+console.log(tree.contain(99
+    ));
+ console.log(tree.BFS())
+console.log(tree.Preorder())
+console.log(tree.inorder())
+console.log(tree.postorder());
 // console.log(tree.maxm(tree.root));
 // tree.BFS()

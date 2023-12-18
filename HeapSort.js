@@ -70,6 +70,26 @@ function heapsort(arr) {
         sort.push(minheap.ExtractMin())
     }
     return sort
+
 }
+
+///to find first three smallest numbers
+// function heapsort(arr) {
+//     let minheap = new MinHeap()
+//     for (let val of arr) {
+//         minheap.insert(val)
+//     }
+//     let sort = []
+//     let count=0;
+//     while (minheap.values.length) {
+// count++;
+// if(count<=3){
+//     sort.push(minheap.ExtractMin())
+
+// }else{
+//     break
+// }
+//     }
+//     return sort
 
 console.log(heapsort([55, 3, 66, 6, 7, 33]));
